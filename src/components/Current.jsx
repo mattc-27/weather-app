@@ -3,6 +3,7 @@ import { WiHumidity, WiCloudUp, WiCloudDown } from "react-icons/wi";
 import { GiWindTurbine } from "react-icons/gi";
 import { BsSunrise, BsSunset } from "react-icons/bs";
 import { AiOutlineCloseCircle } from 'react-icons/ai';
+import HourlyForecast from './HourlyForecast';
 import '../style.css';
 
 
@@ -19,16 +20,6 @@ function Current({ weather }) {
         return () => clearTimeout(timeoutId); // Clean up the timeout when the component unmounts
     }, []);
 
-    const handleClick = () => {
-        setShow(true);
-    };
-    const handleClose = () => {
-        setShow(false);
-    };
-
-    const sidebarOpen = {
-        width: show ? "98%" : "100%"
-    };
 
     const date = new Date();
 
@@ -90,6 +81,53 @@ function Current({ weather }) {
         );
     }
 
+
+
+
+    return (
+        <>
+            {showComponent &&
+                <>
+                    <div className='conditions'>
+                        <div className='conditionsMain' >
+                            <div className='conditionsTop'>
+                                <div className="currentLocation">
+                                    <p>{weather.name}, {weather.region}</p>
+
+                                </div>
+                                <Conditions weather={weather} />
+                            </div>
+                            <div className='conditionsBottom'>
+                                <DayForecast weather={weather} />
+
+                            </div>
+                            <div className='outlookContainer'>
+                                <HourlyForecast weather={weather} />
+                            </div>
+                        </div>
+                    </div>
+                </>
+            }
+        </>
+
+    );
+}
+
+export default Current;
+
+
+/*
+
+    const handleClick = () => {
+        setShow(true);
+    };
+    const handleClose = () => {
+        setShow(false);
+    };
+
+    const sidebarOpen = {
+        width: show ? "98%" : "100%"
+    };
     /// Hourly
     function HourlyForecast() {
         return (
@@ -110,48 +148,43 @@ function Current({ weather }) {
     }
 
 
-    return (
-        <>
-            {showComponent &&
-                <>
-                    <div className='conditions' style={sidebarOpen}>
-                        <div className='conditionsMain' >
-                            <div className='conditionsTop'>
-                                {show &
-                                    show ?
-                                    <div className="currentLocation">
-                                        <p>{weather.name}, {weather.region}</p>
-                                    </div>
-                                    : <div className="currentLocation">
-                                        <p>{weather.name}, {weather.region}</p>
-                                        <button id="openButton" onClick={handleClick}>Show Hourly Forecast</button>
-                                    </div>
-                                }
-                                <Conditions weather={weather} />
+    <>
+                        {showComponent &&
+                            <>
+                                <div className='conditions' style={sidebarOpen}>
+                                    <div className='conditionsMain' >
+                                        <div className='conditionsTop'>
+                                            {show &
+                                                show ?
+                                                <div className="currentLocation">
+                                                    <p>{weather.name}, {weather.region}</p>
+                                                </div>
+                                                : <div className="currentLocation">
+                                                    <p>{weather.name}, {weather.region}</p>
+                                                    <button id="openButton" onClick={handleClick}>Show Hourly Forecast</button>
+                                                </div>
+                                            }
+                                            <Conditions weather={weather} />
 
-                            </div>
-                            <div className='conditionsBottom'>
-                                <DayForecast weather={weather} />
-                            </div>
+                                        </div>
+                                        <div className='conditionsBottom'>
+                                            <DayForecast weather={weather} />
+                                        </div>
 
-                        </div>
-                        {show &&
-                            <div className='sidebar'>
-                                <div className='sidebarTitle'>
-                                    <h3>Hourly</h3>
-                                    <button id="sideBarClose"
-                                        onClick={handleClose}
-                                    ><AiOutlineCloseCircle size={40} style={{ color: '#e64242' }} />
-                                    </button>
+                                    </div>
+                                    {show &&
+                                        <div className='sidebar'>
+                                            <div className='sidebarTitle'>
+                                                <h3>Hourly</h3>
+                                                <button id="sideBarClose"
+                                                    onClick={handleClose}
+                                                ><AiOutlineCloseCircle size={40} style={{ color: '#e64242' }} />
+                                                </button>
+                                            </div>
+                                            <HourlyForecast weather={weather} />
+                                        </div>
+                                    }
                                 </div>
-                                <HourlyForecast weather={weather} />
-                            </div>
+                            </>
                         }
-                    </div>
-                </>
-            }
-        </>
-    );
-}
-
-export default Current;
+                    </>*/
