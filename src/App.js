@@ -4,7 +4,8 @@ import { getWeatherData, getRandomItem } from './weatherServices';
 // components
 import Search from './components/Search';
 import Current from './components/Current';
-import BackgroundUrls from './BackgroundUrls';
+//import BackgroundUrls from './BackgroundUrls';
+import Backgrounds from './Backgrounds';
 
 // stylesheet
 import './style.css';
@@ -19,17 +20,27 @@ export default function App() {
         const fetchData = async () => {
             try {
                 const response = await getWeatherData(query);
-                // fetch,set background image 
-                const currentImage = BackgroundUrls.find(({ region }) => region === response.region)
-                if (currentImage.images === undefined) {
-                    setBackground(`url(${currentImage.value})`)
-                } else {
-                    const result = getRandomItem(currentImage.images)
-                    setBackground(`url(${result.value})`)
-                }
                 // set weather data
                 setWeather(response);
                 console.log(response);
+
+                // fetch,set background image 
+                const currentLocation = Backgrounds.images.find(({ region }) => region === response.region)
+
+                console.log(currentLocation)
+                if (currentLocation.names === undefined) {
+                    const currentImage = getRandomItem(currentLocation.images)
+                    setBackground(`url(${currentImage.value})`)
+                } else {
+                    const currentCity = currentLocation.names.find(({ name }) => name === response.name)
+                    if (currentCity === undefined) {
+                        const currentImage = getRandomItem(currentLocation.images)
+                        setBackground(`url(${currentImage.value})`)
+                    } else {
+                        const result = getRandomItem(currentCity.images)
+                        setBackground(`url(${result.value})`)
+                    }
+                }
             } catch (error) {
                 console.error(error.message)
             }
