@@ -38,14 +38,20 @@ export default function App() {
             .catch(console.error);
     }, [query]);
 
+    const dateTime = new Date();
+    const localTime = dateTime.toLocaleTimeString();
+    const localDate = dateTime.toLocaleDateString();
 
     return (
         <div className='appContainer'>
-            <div className='appTitle'>
-                <h1>Weather App</h1>
-            </div>
             <div className='appHeader' >
-                <Search setQuery={setQuery} />
+                <div className='appTitle'>
+                    <h1>Weather App</h1>
+                    <p>{localDate} | {localTime}</p>
+                </div>
+                <div className='appSearch' >
+                    <Search setQuery={setQuery} />
+                </div>
             </div>
             {weather && (
                 <div className='weatherMain' style={{

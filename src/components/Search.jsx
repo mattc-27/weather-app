@@ -7,6 +7,10 @@ export default function Search({ setQuery }) {
     const [predictions, setPredictions] = useState([]);
     const [searchInput, setSearchInput] = useState({ p: '' });
 
+    const clearInput = () => {
+        setSearchInput({ p: '' });
+    };
+
     const handleChange = (e) => {
         setSearchInput((prev) => ({ ...prev, [e.target.name]: e.target.value }))
         const autocompleteService = new window.google.maps.places.AutocompleteService();
@@ -33,22 +37,34 @@ export default function Search({ setQuery }) {
         });
     };
 
-    const clearInput = () => {
-        setSearchInput({ p: '' });
-    };
+    const handleButtonClick = () => {
+        const queryVariable = searchInput.p
+        setQuery({ q: queryVariable })
+    }
+    
 
     return (
         <>
             <div className='searchContainer'>
                 <div className='searchInputs'>
+                    <GoLocation size={30} style={{ color: "#394867", margin: '1px' }} />
+
                     <input type='text' onChange={handleChange}
                         value={searchInput.p}
                         name='p'
                         placeholder='Search a city or postal code'
                     />
-                    <GoLocation size={35} style={{ color: "#394867" }} />
+
+                    {predictions.length === 0 &&
+                        <button onClick={handleButtonClick}
+                            className="searchButton"
+                            id="searchTest"
+                        >
+                            Search
+                        </button>
+                    }
                 </div>
-                {searchInput.p.length != 0 && (
+                {searchInput.p.length != 0 && predictions.length >= 1 && (
                     <div className="dataResult">
                         {predictions.map((prediction) => {
                             return (

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { WiHumidity, WiCloudUp, WiCloudDown } from "react-icons/wi";
 import { GiWindTurbine } from "react-icons/gi";
 import { BsSunrise, BsSunset } from "react-icons/bs";
+import { AiOutlineCloseCircle } from 'react-icons/ai';
 import '../style.css';
 
 
@@ -26,13 +27,13 @@ function Current({ weather }) {
     };
 
     const sidebarOpen = {
-        width: show ? "80%" : "100%"
+        width: show ? "98%" : "100%"
     };
 
     const date = new Date();
 
 
-/// Current conditions
+    /// Current conditions
     function Conditions() {
         return (
             <>
@@ -51,7 +52,7 @@ function Current({ weather }) {
         );
     }
 
-/// Day overview
+    /// Day overview
     function DayForecast() {
         return (
             <div className="dayConditions">
@@ -89,7 +90,7 @@ function Current({ weather }) {
         );
     }
 
-/// Hourly
+    /// Hourly
     function HourlyForecast() {
         return (
             <>
@@ -113,8 +114,8 @@ function Current({ weather }) {
         <>
             {showComponent &&
                 <>
-                    <div className='currentMain' >
-                        <div className='conditions' style={sidebarOpen} >
+                    <div className='conditions' style={sidebarOpen}>
+                        <div className='conditionsMain' >
                             <div className='conditionsTop'>
                                 {show &
                                     show ?
@@ -126,8 +127,13 @@ function Current({ weather }) {
                                         <button id="openButton" onClick={handleClick}>Show Hourly Forecast</button>
                                     </div>
                                 }
-                                <Conditions />
+                                <Conditions weather={weather} />
+
                             </div>
+                            <div className='conditionsBottom'>
+                                <DayForecast weather={weather} />
+                            </div>
+
                         </div>
                         {show &&
                             <div className='sidebar'>
@@ -135,15 +141,12 @@ function Current({ weather }) {
                                     <h3>Hourly</h3>
                                     <button id="sideBarClose"
                                         onClick={handleClose}
-                                    >Close
+                                    ><AiOutlineCloseCircle size={40} style={{ color: '#e64242' }} />
                                     </button>
                                 </div>
-                                <HourlyForecast />
+                                <HourlyForecast weather={weather} />
                             </div>
                         }
-                    </div>
-                    <div className='conditionsBottom'>
-                        <DayForecast />
                     </div>
                 </>
             }
