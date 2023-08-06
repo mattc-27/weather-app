@@ -58,7 +58,6 @@ export default function App() {
             <div className='appHeader' >
                 <div className='appTitle'>
                     <h1>Weather App</h1>
-                    <p>{localDate} | {localTime}</p>
                 </div>
                 <div className='appSearch' >
                     <Search setQuery={setQuery} />

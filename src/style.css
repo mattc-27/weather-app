@@ -24,10 +24,6 @@ body {
   align-items: center;
   color: #313131;
   height: 150px;
-
-  /*   padding-bottom: 1%;
-  margin: 0 1%;
-  */
 }
 
 .appTitle {
@@ -50,7 +46,6 @@ body {
 .appTitle p {
   font-size: 1.1em;
 }
-
 
 .appSearch {
   display: flex;
@@ -131,7 +126,6 @@ body {
   padding: 0 1%;
 }
 
-
 .dataResult p:hover {
   background-color: lightgrey;
 }
@@ -140,15 +134,16 @@ body {
   .appHeader {
     display: flex;
     flex-direction: column;
-    width: 100%;
     align-items: center;
     height: auto;
+    width: 100%;
   }
 
   .appTitle {
     justify-content: flex-start;
     align-items: flex-start;
   }
+
   .searchContainer {
     margin: 1% 0.25% 0.5% 0.25%;
   }
@@ -159,38 +154,36 @@ body {
   }
 
   .dataResult {
-    width: 30%;
-    top: 150px;
+    width: 50%;
+    top: 16%;
   }
 }
 
-@media only screen and (min-width: 900px) {
-
+@media only screen and (min-width: 1000px) {
   .dataResult {
-    width: 30%;
-    top: 160px;
+    width: 50%;
+    top: 16%;
   }
 }
 
-@media only screen and (min-width: 1000) {
-
+@media only screen and (min-width: 1200px) {
   .dataResult {
-    width: 30%;
-    top: 170px;
-  }
-}
-
-@media only screen and (min-width: 1150px) {
-  .dataResult {
-    width: 30%;
-    top: 180px;
+    width: 50%;
+    top: 17%;
   }
 }
 
 @media only screen and (min-width: 1300px) {
   .dataResult {
-    width: 30%;
-    top: 200px;
+    width: 50%;
+    top: 18%;
+  }
+}
+
+@media only screen and (min-width: 1400px) {
+  .dataResult {
+    width: 50%;
+    top: 19%;
   }
 }
 
@@ -201,7 +194,7 @@ body {
   align-items: center;
   width: 100%;
   color: #F1F1F1;
-  margin-top: 1%;
+  margin-top: 0.5%;
 }
 
 .conditions {
@@ -257,14 +250,15 @@ body {
 
 .currentLocation p {
   font-size: 1em;
-  font-weight: 700;
+  font-weight: 500;
   text-align: center;
 }
 
 .currentTemp,
 .currentDesc {
-  font-size: 2.75em;
+  font-size: 3em;
   font-weight: 600;
+  text-align: center;
 }
 
 .dayConditions {
@@ -305,20 +299,21 @@ body {
   backdrop-filter: blur(5px);
   color: #F1F1F1;
   height: 12em;
-
 }
+
 table {
   width: 100%;
   text-align: center;
   padding: 1% 0;
-
-
 }
-tr, th, td {
+
+tr,
+th,
+td {
   border-right: 0.5px solid #fff;
 }
-tbody  {
 
+tbody {
   font-size: 1em;
   font-weight: 300;
 }
@@ -343,8 +338,6 @@ tbody  {
     align-items: center;
     width: 90%;
   }
-
-
 
   /** main containers for content ***/
   .conditionsTop {
