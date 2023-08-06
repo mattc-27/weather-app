@@ -4,14 +4,13 @@ import { GiWindTurbine } from "react-icons/gi";
 import { BsSunrise, BsSunset } from "react-icons/bs";
 import { AiOutlineCloseCircle } from 'react-icons/ai';
 import HourlyForecast from './HourlyForecast';
+import { ConditionsCard } from './ConditionsCard';
 import '../style.css';
 
 
 function Current({ weather }) {
 
     const [showComponent, setShowComponent] = useState(false);
-    const [show, setShow] = useState(false);
-
     useEffect(() => {
         const delay = 2000; // 2 seconds
         const timeoutId = setTimeout(() => {
@@ -19,10 +18,6 @@ function Current({ weather }) {
         }, delay);
         return () => clearTimeout(timeoutId); // Clean up the timeout when the component unmounts
     }, []);
-
-
-    const date = new Date();
-
 
     /// Current conditions
     function Conditions() {
@@ -47,7 +42,58 @@ function Current({ weather }) {
     function DayForecast() {
         return (
             <div className="dayConditions">
-                <div className="tempHighLow">
+                <ConditionsCard
+                    icon1={<WiCloudUp size={35} />}
+                    condition1={`${weather.forecastday[0].day.maxtemp_f.toFixed()}°F`}
+                    icon2={<WiCloudDown size={35} />}
+                    condition2={`${weather.forecastday[0].day.mintemp_f.toFixed()}°F`}
+                />
+                <ConditionsCard
+                    icon1={<GiWindTurbine size={35} />}
+                    condition1={`${weather.wind_mph}mph`}
+                    icon2={<WiHumidity size={35} />}
+                    condition2={`${weather.humidity}%`}
+                />
+                <ConditionsCard
+                    icon1={<BsSunrise size={35} />}
+                    condition1={weather.forecastday[0].astro.sunrise}
+                    icon2={<BsSunset size={35} />}
+                    condition2={weather.forecastday[0].astro.sunset}
+                />
+            </div>
+        );
+    }
+
+    return (
+        <>
+            {showComponent &&
+                <>
+                    <div className='conditions'>
+                        <div className='conditionsMain' >
+                            <div className='conditionsTop'>
+                                <div className="currentLocation">
+                                    <p>{weather.name}, {weather.region}</p>
+                                </div>
+                                <Conditions weather={weather} />
+                            </div>
+                            <div className='conditionsBottom'>
+                                <DayForecast weather={weather} />
+                            </div>
+                            <div className='outlookContainer'>
+                                <HourlyForecast weather={weather} />
+                            </div>
+                        </div>
+                    </div>
+                </>
+            }
+        </>
+    );
+}
+
+export default Current;
+
+
+/*   <div className="tempHighLow">
                     <div className="tempHigh">
                         <p><WiCloudUp size={35} /></p>
                         <p>{weather.forecastday[0].day.maxtemp_f.toFixed()}°F</p>
@@ -77,114 +123,4 @@ function Current({ weather }) {
                         <p>{weather.forecastday[0].astro.sunset}</p>
                     </div>
                 </div>
-            </div>
-        );
-    }
-
-
-
-
-    return (
-        <>
-            {showComponent &&
-                <>
-                    <div className='conditions'>
-                        <div className='conditionsMain' >
-                            <div className='conditionsTop'>
-                                <div className="currentLocation">
-                                    <p>{weather.name}, {weather.region}</p>
-
-                                </div>
-                                <Conditions weather={weather} />
-                            </div>
-                            <div className='conditionsBottom'>
-                                <DayForecast weather={weather} />
-
-                            </div>
-                            <div className='outlookContainer'>
-                                <HourlyForecast weather={weather} />
-                            </div>
-                        </div>
-                    </div>
-                </>
-            }
-        </>
-
-    );
-}
-
-export default Current;
-
-
-/*
-
-    const handleClick = () => {
-        setShow(true);
-    };
-    const handleClose = () => {
-        setShow(false);
-    };
-
-    const sidebarOpen = {
-        width: show ? "98%" : "100%"
-    };
-    /// Hourly
-    function HourlyForecast() {
-        return (
-            <>
-                {weather &&
-                    weather.forecastday[0].hour.map(hour => (
-                        <div className='hourlyForecast'>
-                            <div key={hour.time_epoch} className='hourlyList'>
-                                <p>{hour.time}</p>
-                                <p>{hour.temp_f}</p>
-                                <p>{hour.condition.text}</p>
-                            </div>
-                        </div>
-                    ))
-                }
-            </>
-        );
-    }
-
-
-    <>
-                        {showComponent &&
-                            <>
-                                <div className='conditions' style={sidebarOpen}>
-                                    <div className='conditionsMain' >
-                                        <div className='conditionsTop'>
-                                            {show &
-                                                show ?
-                                                <div className="currentLocation">
-                                                    <p>{weather.name}, {weather.region}</p>
-                                                </div>
-                                                : <div className="currentLocation">
-                                                    <p>{weather.name}, {weather.region}</p>
-                                                    <button id="openButton" onClick={handleClick}>Show Hourly Forecast</button>
-                                                </div>
-                                            }
-                                            <Conditions weather={weather} />
-
-                                        </div>
-                                        <div className='conditionsBottom'>
-                                            <DayForecast weather={weather} />
-                                        </div>
-
-                                    </div>
-                                    {show &&
-                                        <div className='sidebar'>
-                                            <div className='sidebarTitle'>
-                                                <h3>Hourly</h3>
-                                                <button id="sideBarClose"
-                                                    onClick={handleClose}
-                                                ><AiOutlineCloseCircle size={40} style={{ color: '#e64242' }} />
-                                                </button>
-                                            </div>
-                                            <HourlyForecast weather={weather} />
-                                        </div>
-                                    }
-                                </div>
-                            </>
-                        }
-                    </>*/
+                */
