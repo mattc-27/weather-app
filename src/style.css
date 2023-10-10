@@ -10,12 +10,15 @@
 HEADER, SEARCH
 ---------------- */
 header {
-    height: auto;
+    height: 100px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    background: rgb(33, 34, 53);
+}
+
+.app-btm {
+    background-image: url('https://images.unsplash.com/photo-1533930851007-59105fa457a9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NjAzMzd8MHwxfGFsbHx8fHx8fHx8fDE2OTQ5MjAxMDF8&ixlib=rb-4.0.3&q=80&w=1080');
 }
 
 
@@ -515,7 +518,7 @@ BREAKPOINTS
 @media only screen and (min-width: 780px) {
 
     header {
-        height: 120px;
+        height: 100px;
         display: flex;
         flex-direction: row;
         justify-content: space-between;

@@ -26,7 +26,7 @@ app.get('/', (req, res) => {
 });
 
 // Setup default port
-app.set('port', process.env.PORT || 5000);
+app.set('port', process.env.PORT || 9000);
 
 // Start express app
 app.listen(app.get('port'), () => {

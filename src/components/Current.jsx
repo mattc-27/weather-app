@@ -4,32 +4,7 @@ import { GiWindTurbine } from "react-icons/gi";
 import '../style.css';
 
 /// Current conditions
-export default function Conditions({ weather }) {
-
-    /// Day overview
-    function DayForecast({ weather }) {
-        return (
-            <div className='conditions-card'>
-                <div className='card-item'>
-                    <p><GiWindTurbine size={45} color={'#fff'} /></p>
-                    <p >{weather.wind_mph}</p>
-                </div>
-                <div className='card-item'>
-                    <p><WiCloudUp size={45} color={'#fff'} /></p>
-                    <p >{weather.forecastday[0].day.maxtemp_f.toFixed()}°F</p>
-                </div>
-                <div className='card-item'>
-                    <p><WiCloudDown size={45} color={'#fff'} /></p>
-                    <p >{weather.forecastday[0].day.mintemp_f.toFixed()}°F</p>
-                </div>
-                <div className='card-item'>
-                    <p><WiHumidity size={45} color={'#fff'} /></p>
-                    <p >{weather.humidity}%</p>
-                </div>
-            </div>
-        );
-    }
-
+function Conditions({ weather }) {
     return (
         <>
             <div className='col content-even container-style ' style={{ flexBasis: '500px' }}>
@@ -57,3 +32,29 @@ export default function Conditions({ weather }) {
         </>
     );
 }
+
+/// Day overview
+function DayForecast({ weather }) {
+    return (
+        <div className='conditions-card'>
+            <div className='card-item'>
+                <p><GiWindTurbine size={45} color={'#fff'} /></p>
+                <p >{weather.wind_mph}</p>
+            </div>
+            <div className='card-item'>
+                <p><WiCloudUp size={45} color={'#fff'} /></p>
+                <p >{weather.forecastday[0].day.maxtemp_f.toFixed()}°F</p>
+            </div>
+            <div className='card-item'>
+                <p><WiCloudDown size={45} color={'#fff'} /></p>
+                <p >{weather.forecastday[0].day.mintemp_f.toFixed()}°F</p>
+            </div>
+            <div className='card-item'>
+                <p><WiHumidity size={45} color={'#fff'} /></p>
+                <p >{weather.humidity}%</p>
+            </div>
+        </div>
+    );
+}
+
+export { Conditions, DayForecast }
