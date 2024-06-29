@@ -24,6 +24,7 @@ search component
     position: relative;
     top: 25%;
     width: 100%;
+    max-width: 99%;
     z-index: 99999999999;
 }
 
@@ -33,9 +34,7 @@ search component
     justify-content: center;
     align-items: center;
     height: auto;
-    width: 80%;
-    flex-grow: 1;
-    background: #fff;
+    width: 100%;
     min-width: 0;
     margin: 0;
 }
@@ -51,6 +50,7 @@ search component
     padding: 0 0.5em;
     color: #101415;
     width: 100%;
+    max-width: 79%;
     border: none;
     box-shadow: 0 3px 12px rgba(75, 75, 75, 0.518);
 }
@@ -280,7 +280,6 @@ main weather
     margin: 0 auto;
     color: #1d1c28;
     background-color: hsla(216, 100%, 99%, 0.3);
-
     /* 
     background-color: #fdfcf730;
     backdrop-filter: blur(5px);
@@ -289,9 +288,8 @@ main weather
     margin: 0.5% 0%;
     position: relative;
     z-index: 9000;
-    background-color: #30303058;
-
-    /*    box-shadow: 0 1px 3px rgba(75, 75, 75, 0.318); */
+    background-color: #1a26555e;
+    border-radius: 5px;
 }
 
 .img-container {
@@ -880,21 +878,19 @@ footer {
     }
 
     .img-container {
-        max-height: 30%;
         margin: 2% 0%;
         z-index: 6000;
-        max-width: 39%;
+        height: 100%;
         width: 100%;
-        height: 99%;
         margin: 0 auto;
         position: absolute;
-        top: 5%;
+        top: 7%;
         right: 2%;
     }
 
     .img-container img {
-        width: 50%;
-
+        max-width: 50%;
+        max-height: 50%;
     }
 
 
