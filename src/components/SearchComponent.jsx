@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
+import logoB from '../../logoB.png';
+
 export function SearchComponent({ setQuery }) {
 
     const [predictions, setPredictions] = useState([]);
@@ -44,8 +46,15 @@ export function SearchComponent({ setQuery }) {
     return (
         <header >
             <div className='header-content'>
-                <div className='header-title'>
-                    <h1>Weather app</h1>
+                <div className='header-main'>
+                    <div className='header-title'>
+                        <a href="/">
+                            <h1>WeatherWhale</h1></a>
+                    </div>
+                    <div className='header-logo'>
+                        <img
+                            src={logoB} />
+                    </div>
                 </div>
                 <Toaster containerStyle={{
                     position: 'absolute',
@@ -53,7 +62,6 @@ export function SearchComponent({ setQuery }) {
                     top: '5%'
                 }} />
             </div>
-
 
             <div className='search-component'/* style={{position: 'absolute', zIndex: '99999', top: '90px'}}/* style={{position: 'absolute', zIndex: '100000', top: '30%'}}  style={{position: 'absolute', zIndex: '9999999', top: '10%'}}*/ >
                 <div className='search-inputs ' style={{}} >
